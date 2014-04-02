@@ -10,6 +10,8 @@ namespace D2D
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("test");
+            Console.ReadLine();
         }
     }
 }

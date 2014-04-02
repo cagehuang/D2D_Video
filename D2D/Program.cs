@@ -10,7 +10,7 @@ namespace D2D
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("test");
+            Console.WriteLine("test2");
             Console.ReadLine();
         }
     }

@@ -51,7 +51,7 @@ namespace D2D
 
                 SHOW.eNodeB_State(UEs);
                 SHOW.UEs_State(UE_NUMBER, UEs);
-                Console.ReadLine();
+
                 
 
                 //**沒有設計的排法

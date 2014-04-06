@@ -8,7 +8,7 @@ namespace D2D
 {
     class MCS_Calculate
     {
-        public static int SINR_Cal(int BS_RS, double distance) //計算SINR，前參數代表算的是BS還是RS，0為BS，不是則為RS
+        public static int SINR_Cal(int BS_RS, double distance) //計算SINR，前參數代表算的是eNodeB還是D2D，0為eNodeB，1則為D2D
         {
             //前導公式
             //dBm = 10*log10(mW)
@@ -25,7 +25,7 @@ namespace D2D
             const double Gi = 1; //都代1
             const double Gj = 1; //都代1
 
-            double P_Transmit = (BS_RS == 0 ? 20000 : 10000); //20000mw，20W  BS帶20W，RS帶10W
+            double P_Transmit = (BS_RS == 0 ? 20000 : 500); //20000mw，20W  eNodeB代20W，D2D代0.5W
 
             double Pass_Loss = 0.0;
 
@@ -33,7 +33,7 @@ namespace D2D
             const double r = (4.6 - 0.0075 * 30 + 12.6 / 30); // r = (a - b*hb + c/hb);
 
             const double d0 = 100; //100m
-            double Distance = distance; //跟RS或BS的距離，單位m
+            double Distance = distance; //跟eNodeB或D2D之間的距離，單位m
             const double Shadowing_effect = 8.2;  //8.2 ~ 10.6 dB
 
             const double Lambda = 0.12; //0.12m，2.5GHz = (3 * (10^8) / Lamba) => Lamba = 0.12
@@ -84,7 +84,7 @@ namespace D2D
             //return data carried by a slot (bits)
         }
 
-        public static double Radius(int BS_RS, double min_dBm) //計算半徑，前參數代表算的是BS還是RS，0為BS，不是則為RS
+        public static double Radius(int BS_RS, double min_dBm) //計算半徑，前參數代表算的是eNodeB還是D2D，0為eNodeB，1則為D2D
         {
             double SINR = min_dBm;
             const double Bandwidth = 10000000; //10MHz
@@ -97,7 +97,7 @@ namespace D2D
 
             const double Gi = 1; //都代1
             const double Gj = 1; //都代1
-            double P_Transmit = (BS_RS == 0 ? 20000 : 10000); //BS帶20W，RS帶10W
+            double P_Transmit = (BS_RS == 0 ? 20000 : 500); //eNodeB代20W，D2D代0.5W
 
             double Pass_Loss = ((Gi * Gj * P_Transmit) / P_Receiver); //mW
 

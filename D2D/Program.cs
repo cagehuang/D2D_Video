@@ -14,7 +14,7 @@ namespace D2D
         {
             //**設定執行環境
 
-            Console.SetWindowSize(80, 46);
+            Console.SetWindowSize(150, 46);
 
             System.Diagnostics.Stopwatch stoptime = new System.Diagnostics.Stopwatch();////程式計時，引用stopwatch物件
             stoptime.Reset();//碼表歸零
@@ -47,6 +47,7 @@ namespace D2D
                 for (int UE_Number_Count = 1; UE_Number_Count < UE_NUMBER + 1; UE_Number_Count++){ //UE_NUMBER + 1是因為要算進eNodeB
                     UEs[UE_Number_Count] = new UE(UE_Number_Count, UEs);
                     UEs[UE_Number_Count].UID = UE_Number_Count;
+                    UEs[UE_Number_Count].Set_UE();
                 }
 
                 SHOW.eNodeB_State(UEs);

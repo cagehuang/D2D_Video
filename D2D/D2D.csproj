@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conflict_Graph.cs" />
     <Compile Include="MCS_Calculate.cs" />
     <Compile Include="Show.cs" />
     <Compile Include="UE.cs" />

@@ -38,12 +38,12 @@ namespace D2D
                 //***部屬eNodeB & UE
                 UE[] UEs = new UE[UE_NUMBER + 1];//UE_Number +1 是因為要把eNodeB也算進去
 
-                //部屬eNodeB
+                //****部屬eNodeB
                 UEs[0] = new UE();
                 UEs[0].UID = 0;
                 UEs[0].Set_eNodeB();
 
-                //部屬UEs
+                //****部屬UEs
                 for (int UE_Number_Count = 1; UE_Number_Count < UE_NUMBER + 1; UE_Number_Count++){ //UE_NUMBER + 1是因為要算進eNodeB
                     UEs[UE_Number_Count] = new UE(UE_Number_Count, UEs);
                     UEs[UE_Number_Count].UID = UE_Number_Count;
@@ -51,9 +51,8 @@ namespace D2D
                 }
 
                 SHOW.eNodeB_State(UEs);
-                SHOW.UEs_State(UE_NUMBER, UEs);
+                SHOW.UEs_State(UE_NUMBER, UEs);              
 
-                
 
                 //**沒有設計的排法
 

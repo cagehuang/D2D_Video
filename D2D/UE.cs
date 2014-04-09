@@ -15,6 +15,9 @@ namespace D2D
         public int MCS_Level = -1;            //速率 (bits / slot)
         public int eNodeB_Radius = -1;    //eNodeB的覆蓋半徑
         public int Distance_between_eNodeB = -1;
+        public int Practical_Trans_Segment = -1;    //實際傳輸的Segment ; KB
+        public int Practical_Trans_Time = -1;       //實際傳輸Segment所需的時間 ; ms
+
 
         public UE()
         {
@@ -47,7 +50,7 @@ namespace D2D
         public void Set_UE()
         {   
             //設定eNodeB
-            this.MCS_Level = Convert.ToInt16(MCS_Calculate.SINR_Cal(0, this.Distance_between_eNodeB));
+            this.MCS_Level = Convert.ToInt16(MCS_Calculate.DataRate_Cal(0, this.Distance_between_eNodeB));
         }
     }
 }

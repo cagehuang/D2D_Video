@@ -26,9 +26,11 @@ namespace D2D
             int RUNTIME = 1 ;               //程式執行次數
             int UE_NUMBER = 3;              //UE的個數
             int VIDEO_NUMBER = 3;           //影片的個數
-            int VIDEO_AIRTIME = 10;         //影片的撥放時間 ; 分鐘
+            int VIDEO_AIRTIME = 10;         //影片的最長撥放時間 ; 分鐘
+            //int VIDEO_SIZE = 180000;        //影片的檔案大小 ; KB
+            int VIDEO_CODE_RATE = 300;      //影片畫質 ; SD (480p) ; KBps
             int DEBUG_MODE = 1;             //要不要開起Debug模式
-            int SEGEMENT_SIZE = 1000;       //影片片段的大小 ; KB
+            int SEGEMENT_SIZE = 900;        //影片片段的大小 ; KB
             
             int SCHEME_PERIOD = 10;             //LTE 1 frame = 10ms
 
@@ -64,22 +66,25 @@ namespace D2D
                     SHOW.UEs_State(UE_NUMBER, UEs);
                 }
 
+                /*
                 //****設定影片
                 Video[] Videos = new Video[VIDEO_NUMBER];
                 for (int Video_Number_Count = 0; Video_Number_Count < VIDEO_NUMBER; Video_Number_Count++)
                 {
-                    Videos[Video_Number_Count] = new Video(Video_Number_Count, VIDEO_AIRTIME);
+                    Videos[Video_Number_Count] = new Video(Video_Number_Count, VIDEO_AIRTIME, SEGEMENT_SIZE);
                 }
-
+                */
+ 
                 //****部屬Media_Center
                 Media_Center MC = new Media_Center();
-                MC.Add_Videos(VIDEO_NUMBER);                               
+                MC.Add_Videos(VIDEO_NUMBER, VIDEO_AIRTIME, SEGEMENT_SIZE, VIDEO_CODE_RATE);                               
                 if (DEBUG_MODE == 1)
                 {
-                    MC.Show_State(VIDEO_NUMBER, VIDEO_AIRTIME );
+                    MC.Show_Video_State(VIDEO_NUMBER, VIDEO_CODE_RATE, SEGEMENT_SIZE);
+                    //MC.Show_State(VIDEO_NUMBER, VIDEO_AIRTIME );
                 }
 
-                
+                MC.test();
 
                 //**沒有設計的排法
                 

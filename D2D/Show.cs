@@ -22,7 +22,8 @@ namespace D2D
                 Console.WriteLine("UE " + UES[UE_Number].UID + "  ：" + "X_AXIS = " + UES[UE_Number].X_AXIS 
                     + ", Y_AXIS = " + UES[UE_Number].Y_AXIS 
                     + ", Distance_between_eNodeB = " + UES[UE_Number].Distance_between_eNodeB
-                    + ", MCS_level = " + UES[UE_Number].MCS_Level);
+                    + ", MCS_level = " + UES[UE_Number].MCS_Level
+                    + ", Remaining_Playback_Time = " + UES[UE_Number].Remaining_Playback_Time);
             }
             Console.WriteLine();
         }

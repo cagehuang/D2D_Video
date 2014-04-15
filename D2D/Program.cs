@@ -32,7 +32,9 @@ namespace D2D
             int DEBUG_MODE = 1;             //要不要開起Debug模式
             int SEGEMENT_SIZE = 900;        //影片片段的大小 ; KB
             
-            int SCHEME_PERIOD = 10;             //LTE 1 frame = 10ms
+            int SCHEME_PERIOD = 60;         //程式執行週期 ; 秒 ; LTE 1 frame = 10ms
+
+            int USER_START_WATCHING_RANGE = 10; //用戶開始看影片的亂數上限時間 ; 分鐘
 
             Show SHOW = new Show();
 
@@ -56,13 +58,14 @@ namespace D2D
                     //UE_NUMBER + 1是因為要算進eNodeB
                     UEs[UE_Number_Count] = new UE(UE_Number_Count, UEs);
                     UEs[UE_Number_Count].UID = UE_Number_Count;
-                    UEs[UE_Number_Count].Set_UE();
+                    UEs[UE_Number_Count].Set_UE(VIDEO_NUMBER, USER_START_WATCHING_RANGE);
                 }
 
                 //****顯示eNodeB & UEs 的狀態
                 if (DEBUG_MODE == 1)
                 {
                     SHOW.eNodeB_State(UEs);
+                    Console.WriteLine("排序前");
                     SHOW.UEs_State(UE_NUMBER, UEs);
                 }
 
@@ -76,7 +79,7 @@ namespace D2D
                 */
  
                 //****部屬Media_Center
-                Media_Center MC = new Media_Center();
+                Media_Center MC = new Media_Center(UEs);
                 MC.Add_Videos(VIDEO_NUMBER, VIDEO_AIRTIME, SEGEMENT_SIZE, VIDEO_CODE_RATE);                               
                 if (DEBUG_MODE == 1)
                 {
@@ -84,7 +87,17 @@ namespace D2D
                     //MC.Show_State(VIDEO_NUMBER, VIDEO_AIRTIME );
                 }
 
-                MC.test();
+                //test Basic Scheme
+                Basic_Scheme BS = new Basic_Scheme();
+                BS.Run(SCHEME_PERIOD, UEs, MC, SEGEMENT_SIZE, false);  //無D2D版
+
+                //觀察正確性
+                Console.WriteLine();
+                Console.WriteLine("排序後");
+                SHOW.UEs_State(UE_NUMBER,UEs);
+                
+
+                //MC.test();
 
                 //**沒有設計的排法
                 
@@ -106,6 +119,8 @@ namespace D2D
 
                 Console.ReadLine();
             }
+
+            //MCS要改成LTE的
 
             Console.ReadLine();
 

@@ -46,6 +46,8 @@
     <Compile Include="MCS_Calculate.cs" />
     <Compile Include="Media_Center.cs" />
     <Compile Include="Proposed_Scheme.cs" />
+    <Compile Include="Remaining_Playback_Time_Comparer.cs" />
+    <Compile Include="Round.cs" />
     <Compile Include="Show.cs" />
     <Compile Include="UE.cs" />
     <Compile Include="Program.cs" />

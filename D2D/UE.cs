@@ -18,6 +18,12 @@ namespace D2D
         public int Practical_Trans_Segment = -1;    //實際傳輸的Segment ; KB
         public int Practical_Trans_Time = -1;       //實際傳輸Segment所需的時間 ; ms
 
+        public int Watching_Video = -1;             //希望看的Video ID
+        public int Watching_StartTime = -1;         //開始看的時間
+        public int Finish_Time = -1;                //Segment都載完的時間
+
+        public int Remaining_Playback_Time = -1;    //剩餘可撥放的時間 (以完全還沒開始撥的segment計算)
+
 
         public UE()
         {
@@ -47,10 +53,16 @@ namespace D2D
             this.Y_AXIS = Convert.ToInt16(this.eNodeB_Radius);
         }
 
-        public void Set_UE()
+        public void Set_UE(int Video_Number, int User_Start_Watching_Range)
         {   
-            //設定eNodeB
+            //設定UE
             this.MCS_Level = Convert.ToInt16(MCS_Calculate.DataRate_Cal(0, this.Distance_between_eNodeB));
+
+            //設定想要看的影片以及觀看時間
+            Watching_Video = (random.Next(Video_Number) + 1);                              //Random只會取"小於"()的值，有可能為0，故+1
+            Watching_StartTime = (random.Next(User_Start_Watching_Range) + 1);             //Random希望使用者開始看的時間
+            Remaining_Playback_Time = 0;
         }
+
     }
 }
